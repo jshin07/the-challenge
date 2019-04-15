@@ -10,19 +10,23 @@ import PropTypes from 'prop-types';
 
 class LuckyNumberDisplay extends React.PureComponent {
   render() {
-    // TODO: Receive props passed down from LuckyNumber container
-    // const { } = this.props;
+    const { displayName, luckyNumber} = this.props;
 
     return (
       <div className="mt5 pa4 center w-25 bg-light-gray">
-        {/* TODO: Display the user's full name and their lucky number */}
+      <h3>
+        Hello, {displayName}! <br/><br/>
+        Your lucky number is <br/><br/>
+        {luckyNumber}
+      </h3>
       </div>
     );
   }
 }
 
-// TODO: Add PropTypes
 LuckyNumberDisplay.propTypes = {
+  displayName: PropTypes.string,
+  luckyNumber: PropTypes.number
 
 };
 

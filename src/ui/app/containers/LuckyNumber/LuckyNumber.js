@@ -8,8 +8,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
-
-import { CONTAINER_KEY } from '../constants';
+import LuckyNumberDisplay from '../../components/LuckyNumberDisplay/LuckyNumberDisplay';
 
 class LuckyNumber extends React.PureComponent {
   render() {
@@ -19,14 +18,23 @@ class LuckyNumber extends React.PureComponent {
           <title>Lucky Number</title>
         </Helmet>
 
-        <LuckyNumberDisplay {...this.props} />
+        <LuckyNumberDisplay 
+          displayName= {this.props.displayName} 
+          luckyNumber= {this.props.luckyNumber}
+        />
+
       </article>
     );
   }
 }
 
-const mapStateToProps = () => ({
-  // TODO: Get values from Redux store
-});
+const mapStateToProps = (state) => {
+  const firstname = state._root.entries[2][1].action.username.firstname;
+  const lastname = state._root.entries[2][1].action.username.lastname;
+  const displayName = firstname + ' ' + lastname 
+  const luckyNumber = state._root.entries[2][1].luckyNumber;
 
-export default connect()(LuckyNumber);
+  return { displayName, luckyNumber }
+};
+
+export default connect(mapStateToProps, {LuckyNumberDisplay})(LuckyNumber);

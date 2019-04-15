@@ -13,8 +13,18 @@
  */
 export const validate = (values) => {
   const errors = {};
-
-  // TODO: Validate that the user has entered a username, first name, and last name
+  if (!values.get('firstname') || values.get('firstname').trim() === '') {
+    errors.firstname = true
+    errors.errorMessage = 'First Name Required'
+  } 
+  if (!values.get('lastname')|| values.get('lastname').trim() === '') {
+    errors.lastname = true
+    errors.errorMessage = 'Last Name Required'
+  }
+  if (!values.get('username')|| values.get('username').trim() === '') {
+    errors.username = true
+    errors.errorMessage = 'User Name Required'
+  }
 
   return errors;
 };

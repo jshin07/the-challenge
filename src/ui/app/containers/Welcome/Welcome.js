@@ -17,7 +17,8 @@ import injectReducer from 'utils/injectReducer';
 
 import WelcomeForm from 'components/WelcomeForm/WelcomeForm';
 
-import { CONTAINER_KEY } from '../constants';
+import { CONTAINER_KEY, DISPATCH_ACTIONS } from '../constants';
+import { getLuckyNumber } from '../actions';
 import saga from '../saga';
 import reducer from '../reducer';
 
@@ -36,11 +37,13 @@ class Welcome extends React.PureComponent {
    */
   submit(values) {
     const { dispatch } = this.props;
+    const { entries } = values._root;
+    const user = Object.assign(...entries.map(e=> ({[e[0]] : e[1]})))
 
-    // TODO: Get the form values and invoke the service layer
+    dispatch(getLuckyNumber(user));
 
-    dispatch(???);
   }
+
 
   render() {
     return (
@@ -50,7 +53,7 @@ class Welcome extends React.PureComponent {
         </Helmet>
 
         <div className="mt5 pa4 center w-25 bg-light-gray">
-          <WelcomeForm onSubmit={???} />
+          <WelcomeForm onSubmit={this.submit}/>
         </div>
       </article>
     );

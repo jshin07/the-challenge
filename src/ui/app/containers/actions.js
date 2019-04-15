@@ -13,4 +13,10 @@ export function getLuckyNumber(username) {
   };
 }
 
-// TODO: Add more actions if needed
+export function getLuckNumberSuccess(result) {
+  return{ 
+    type: DISPATCH_ACTIONS.GET_LUCKY_NUMBER_SUCCESS,
+    result
+  }
+
+}
