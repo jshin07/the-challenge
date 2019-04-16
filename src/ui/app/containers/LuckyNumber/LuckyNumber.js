@@ -9,6 +9,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import LuckyNumberDisplay from '../../components/LuckyNumberDisplay/LuckyNumberDisplay';
+import { CONTAINER_KEY } from '../constants';
 
 class LuckyNumber extends React.PureComponent {
   render() {
@@ -29,12 +30,12 @@ class LuckyNumber extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  const firstname = state._root.entries[2][1].action.username.firstname;
-  const lastname = state._root.entries[2][1].action.username.lastname;
-  const displayName = firstname + ' ' + lastname 
-  const luckyNumber = state._root.entries[2][1].luckyNumber;
+    const luckyNumber=  state.get(CONTAINER_KEY).luckyNumber;
+    const firstname = state.get(CONTAINER_KEY).firstname;
+    const lastname = state.get(CONTAINER_KEY).lastname;
+    const displayName = firstname + ' ' + lastname;
 
   return { displayName, luckyNumber }
 };
 
-export default connect(mapStateToProps, {LuckyNumberDisplay})(LuckyNumber);
+export default connect(mapStateToProps)(LuckyNumber);

@@ -18,16 +18,13 @@ const initialState = fromJS({
 });
 
 function reducer(state = initialState, action) {
+
   switch (action.type) {
     case DISPATCH_ACTIONS.GET_LUCKY_NUMBER:
-    console.log('getLuckyNumber from reducer')
-    console.log(state)
-    console.log(action.username)
-      return {...state, action};
+      return {...state, firstname: action.fName, lastname: action.lName}
     case DISPATCH_ACTIONS.GET_LUCKY_NUMBER_SUCCESS:
-    console.log('getLuckyNumberSuccess from reducer')
-    console.log(state)
       return {...state, luckyNumber: action.result.luckyNumber}
+      // return state.set('luckyNumber', action.result.luckyNumber);
     default:
       return state;
   }

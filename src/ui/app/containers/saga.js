@@ -11,21 +11,25 @@
 
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
+import { getLuckyNumberSuccess } from './actions';
 
 import request from 'utils/request';
+
 
 import { DISPATCH_ACTIONS } from './constants';
 
 export function* getLuckyNumber({ username }) {
 
-  const requestUrl = 'http://localhost:1337/lucky-number?username={username}';
+  const requestUrl = 'http://localhost:1337/lucky-number?username=' + username;
+  
   try {
     const result = yield call(request, requestUrl);
-
-    yield put({type: DISPATCH_ACTIONS.GET_LUCKY_NUMBER_SUCCESS, result });
+    yield put(getLuckyNumberSuccess(result));
     yield put(push('/lucky'))
+
   } catch (err) {
   }
+  
 
 
 }

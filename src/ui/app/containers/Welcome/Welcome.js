@@ -37,10 +37,11 @@ class Welcome extends React.PureComponent {
    */
   submit(values) {
     const { dispatch } = this.props;
-    const { entries } = values._root;
-    const user = Object.assign(...entries.map(e=> ({[e[0]] : e[1]})))
+    const fName = values.get("firstname");
+    const lName = values.get("lastname");
+    const username = values.get('username');
+    dispatch(getLuckyNumber(fName,lName,username));
 
-    dispatch(getLuckyNumber(user));
 
   }
 
